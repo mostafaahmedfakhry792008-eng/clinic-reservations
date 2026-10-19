@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم الطبيب</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/rtl.min.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark px-4">
+        <span class="navbar-brand mb-0 h1">لوحة تحكم عيادة التغذية</span>
+        <a href="/admin/logout" class="btn btn-outline-light btn-sm">تسجيل الخروج</a>
+    </nav>
+    <div class="container py-4">
+        <h3 class="mb-4">قائمة المرضى المنتظرين للكشف</h3>
+        
+        {% if appointments %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered bg-white shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>اسم المريض</th>
+                        <th>رقم الهاتـف</th>
+                        <th>اليوم المحجوز</th>
+                        <th>فرع العيادة</th>
+                        <th>وقت التسجيل</th>
+                        <th>ملاحظات</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in appointments %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ app.name }}</td>
+                        <td><a href="tel:{{ app.phone }}">{{ app.phone }}</a></td>
+                        <td>{{ app.day }}</td>
+                        <td>{{ app.location }}</td>
+                        <td>{{ app.created_at }}</td>
+                        <td>{{ app.notes if app.notes else 'لا توجد' }}</td>
+                        <td>
+                            <form action="/admin/done/{{ app.id }}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-sm">تم الدخول (حذف)</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center">لا توجد ححوزات جديدة حالياً، استراحة مباركة!</div>
+        {% endif %}
+    </div>
+</body>
+</html>

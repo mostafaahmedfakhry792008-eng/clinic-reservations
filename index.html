@@ -1,0 +1,39 @@
+<!-- نموذج الحجز -->
+        <div class="card">
+            <div class="card-header" style="background-color: #27ae60;">حجز موعد جديد</div>
+            <div class="card-body">
+                <form action="/book" method="POST">
+                    <div class="form-group">
+                        <label>الاسم الثلاثي</label>
+                        <input type="text" name="name" required placeholder="أدخل اسمك الثلاثي">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" name="phone" required placeholder="أدخل رقم الهاتف المحمول">
+                    </div>
+                    <div class="form-group">
+                        <label>اختر اليوم المناسب</label>
+                        <select name="day" required>
+                            <option value="Saturday">السبت (الحوامدية)</option>
+                            <option value="Sunday">الأحد (الحوامدية)</option>
+                            <option value="Tuesday">الثلاثاء (الحوامدية)</option>
+                            <option value="Wednesday">الأربعاء (الحوامدية)</option>
+                            <option value="Thursday">الخميس (الحوامدية)</option>
+                            <option value="Friday">الجمعة (ميت رهينة)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ملاحظات طبية أو هدفك من الزيارة (اختياري)</label>
+                        <textarea name="notes" rows="2" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+                    </div>
+                    <button type="submit">تأكيد الحجز</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="admin-link">
+            <a href="/admin/login">تسجيل دخول الأدمن (الطبيب)</a>
+        </div>
+    </div>
+</body>
+</html>
